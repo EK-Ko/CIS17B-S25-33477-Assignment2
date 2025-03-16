@@ -2,7 +2,6 @@
 #include <string>
 #include <cstdlib>
 #include <vector>
-
 using namespace std;
 
 class Book{
@@ -14,10 +13,16 @@ class Book{
     public:
         Book(string title, string author, string ISBN): title(title), author(author), ISBN(ISBN), availability(true){}
 
+        //getters
         string getTitle() const {return title;}
         string getAuthor() const { return author;}
         string getISBN() const { return ISBN;}
         bool isAvailable () const { return availability;}
+
+        //setters
+        void setTitle(string title){this->title = title;}
+        void setAuthor(string author){this->author = author;}
+        void setISBN(string ISBN){this->ISBN = ISBN;}
 
         void borrowBook(){availability = false;}
         void returnBook() {availability = true;}
@@ -41,9 +46,12 @@ class User{
             userID = nextID++;
         }
 
+        //getters
         int getUserID() const { return userID; }
         string getName() const { return name; }
-        //void setName(string name){this.name = name;}
+        
+        //setter
+        void setName(string name){this->name = name;}
 
         void borrowBook(Book* book) {
             if (book->isAvailable()) {
@@ -246,17 +254,17 @@ int main(){
                             getline(cin, title);
                             Book* book = library->findBook(title);
                             if (book) {
-                                /*string title, author, ISBN;
+                                string title, author, ISBN;
                                 cout << "Enter New Title: ";
                                 getline(cin, title);
-                                book->setAuthor(title);
+                                book->setTitle(title);
                                 cout << "Enter New Author: ";
                                 getline(cin, author);
                                 book->setAuthor(author);
                                 cout << "Enter New ISBN: ";
                                 getline(cin, ISBN);
-                                book->setAuthor(ISBN);
-                                cout << "Book Updated Successfully!\n";*/
+                                book->setISBN(ISBN);
+                                cout << "Book Updated Successfully!\n";
                             } else {
                                 cout << "Book Not Found!\n";
                             }
@@ -314,12 +322,12 @@ int main(){
                             cin >> id;
                             User* user = library->findUserByID(id);
                             if (user) {
-                                /*string name;
+                                string name;
                                 cout << "Enter New Name: ";
                                 cin.ignore();
                                 getline(cin, name);
-                                User->setName(name);
-                                cout << "User Updated Successfully!\n";*/
+                                user->setName(name);
+                                cout << "User Updated Successfully!\n";
                             } else {
                                 cout << "User Not Found!\n";
                             }
@@ -396,7 +404,7 @@ int main(){
                 }
                 exit_borrow:
                 break;
-
+                
             case 4:
                 cout << "Exiting Library System.\n";
                 return 0;
@@ -405,7 +413,5 @@ int main(){
                 cout << "Invalid choice.\n";
         }
     }
-
-    
     return 0;
 }
