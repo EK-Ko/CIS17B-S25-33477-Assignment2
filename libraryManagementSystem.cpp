@@ -213,17 +213,22 @@ Library* Library::instance = nullptr;
 
 int main(){
     Library* library = Library::getInstance();
-    int choice, secondChoice;
+    string choice, secondChoice;
+    int iChoice, iSecondChoice;
+    
     while (true) {
-        cout << "\nWelcome to the Library:\n"
+        try
+        {
+            cout << "\nWelcome to the Library:\n"
              << "1. Manage Books\n"
              << "2. Manage Users\n"
              << "3. Manage Transactions\n"
              << "4. Exit\n"
              << "Enter your choice: ";
-        cin >> choice;
+            cin >> choice;
+            int iChoice = std::stoi(choice);
 
-        switch (choice) {
+        switch (iChoice) {
             case 1: //Manage Books
                 while (true) {
                     cout << "\n> Manage Books:\n"
@@ -233,8 +238,9 @@ int main(){
                          << "4. Go Back\n"
                          << "Enter your choice: ";
                     cin >> secondChoice;
+                    iSecondChoice = stoi(secondChoice);
 
-                    switch (secondChoice) {
+                    switch (iSecondChoice) {
                         case 1: {
                             string title, author, ISBN;
                             cout << "Enter Book Title: ";
@@ -303,8 +309,9 @@ int main(){
                          << "4. Go Back\n"
                          << "Enter your choice: ";
                     cin >> secondChoice;
+                    iSecondChoice = stoi(secondChoice);
 
-                    switch (secondChoice) {
+                    switch (iSecondChoice) {
                         case 1: {
                             int type;
                             string name;
@@ -366,8 +373,9 @@ int main(){
                          << "5. Go Back\n"
                          << "Enter your choice: ";
                     cin >> secondChoice;
+                    iSecondChoice = stoi(secondChoice);
 
-                    switch (secondChoice) {
+                    switch (iSecondChoice) {
                         case 1: {
                             int userID;
                             string title;
@@ -404,7 +412,7 @@ int main(){
                 }
                 exit_borrow:
                 break;
-                
+
             case 4:
                 cout << "Exiting Library System.\n";
                 return 0;
@@ -412,6 +420,13 @@ int main(){
             default:
                 cout << "Invalid choice.\n";
         }
+        }
+        catch(const std::exception& e)
+        {
+            std::cout << "Please enter a valid number" << std::endl;
+        }
+        
+        
     }
     return 0;
 }
